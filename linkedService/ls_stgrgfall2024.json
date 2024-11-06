@@ -1,0 +1,10 @@
+{
+	"name": "ls_stgrgfall2024",
+	"properties": {
+		"annotations": [],
+		"type": "AzureBlobFS",
+		"typeProperties": {
+			"url": "https://stgrgfall2024.dfs.core.windows.net/"
+		}
+	}
+}
