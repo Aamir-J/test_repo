@@ -3,7 +3,7 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "Data flow1",
+				"name": "Loading_Breed_Dimension",
 				"type": "ExecuteDataFlow",
 				"dependsOn": [],
 				"policy": {
