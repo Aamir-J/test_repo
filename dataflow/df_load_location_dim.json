@@ -54,7 +54,6 @@
 				"     ),",
 				"     allowSchemaDrift: false,",
 				"     validateSchema: false,",
-				"     limit: 100,",
 				"     ignoreNoFilesFound: false) ~> sourceGeoData",
 				"source(output(",
 				"          MAXLOCATIONSK as decimal(10,0)",
