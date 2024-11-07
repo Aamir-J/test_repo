@@ -96,7 +96,7 @@
 				"          LOCATION_SK,",
 				"          ZIP = zipcode,",
 				"          CITY = city,",
-				"          STATE = state,",
+				"          STATE = state_abbr,",
 				"          DATE_TO_WAREHOUSE,",
 				"          DI_JOBID = DI_JOB_ID",
 				"     )) ~> sinkLocationDim"
