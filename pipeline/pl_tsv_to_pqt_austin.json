@@ -3,7 +3,7 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "Load_To_Src",
+				"name": "Load_To_Parquet",
 				"type": "Copy",
 				"dependsOn": [],
 				"policy": {
@@ -572,11 +572,11 @@
 				]
 			},
 			{
-				"name": "Parquet_To_Src",
+				"name": "Parquet_To_Snowflake",
 				"type": "Copy",
 				"dependsOn": [
 					{
-						"activity": "Load_To_Src",
+						"activity": "Load_To_Parquet",
 						"dependencyConditions": [
 							"Succeeded"
 						]
