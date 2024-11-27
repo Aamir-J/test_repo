@@ -1,0 +1,44 @@
+{
+	"name": "pl_tsv_to_pqt_chicago",
+	"properties": {
+		"activities": [
+			{
+				"name": "Load_To_Parquet",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.00:30:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "DelimitedTextSource",
+						"storeSettings": {
+							"type": "AzureBlobFSReadSettings",
+							"recursive": true,
+							"enablePartitionDiscovery": false
+						},
+						"formatSettings": {
+							"type": "DelimitedTextReadSettings"
+						}
+					},
+					"enableStaging": false
+				},
+				"inputs": [
+					{
+						"referenceName": "ds_chicago_src",
+						"type": "DatasetReference",
+						"parameters": {
+							"FileName": "Traffic_Crashes_-_Crashes_20241126.tsv"
+						}
+					}
+				]
+			}
+		],
+		"annotations": []
+	}
+}
