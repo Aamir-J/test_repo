@@ -531,7 +531,7 @@
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "Law_enforcement_fatality count",
+									"name": "Law_enforcement_fatality_count",
 									"physicalType": "UTF8"
 								}
 							},
@@ -567,6 +567,58 @@
 				"outputs": [
 					{
 						"referenceName": "ds_Parquet_Src_Austin",
+						"type": "DatasetReference"
+					}
+				]
+			},
+			{
+				"name": "Parquet_To_Src",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "Load_To_Src",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.00:30:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "ParquetSource",
+						"storeSettings": {
+							"type": "AzureBlobFSReadSettings",
+							"recursive": true,
+							"enablePartitionDiscovery": false
+						},
+						"formatSettings": {
+							"type": "ParquetReadSettings"
+						}
+					},
+					"sink": {
+						"type": "SnowflakeV2Sink",
+						"importSettings": {
+							"type": "SnowflakeImportCopyCommand"
+						}
+					},
+					"enableStaging": false
+				},
+				"inputs": [
+					{
+						"referenceName": "ds_read_parquet_austin",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "ds_snowflake_austin_src",
 						"type": "DatasetReference"
 					}
 				]
