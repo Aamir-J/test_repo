@@ -9,6 +9,9 @@
 			"FileName": {
 				"type": "string",
 				"defaultValue": "Traffic_Crashes_-_Crashes_20241126.tsv"
+			},
+			"Directory": {
+				"type": "string"
 			}
 		},
 		"annotations": [],
