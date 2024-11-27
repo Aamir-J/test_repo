@@ -1,0 +1,19 @@
+{
+	"name": "ds_Parquet_Src_nyc",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_stgrgfall2024",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileSystem": "silver"
+			},
+			"compressionCodec": "snappy"
+		},
+		"schema": []
+	}
+}
