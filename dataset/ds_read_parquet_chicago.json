@@ -1,0 +1,20 @@
+{
+	"name": "ds_read_parquet_chicago",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_stgrgfall2024",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "Traffic_Crashes_-_Crashes_20241126.parquet",
+				"fileSystem": "silver"
+			},
+			"compressionCodec": "snappy"
+		},
+		"schema": []
+	}
+}
