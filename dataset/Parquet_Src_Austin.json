@@ -1,0 +1,19 @@
+{
+	"name": "Parquet_Src_Austin",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_stgrgfall2024",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "Austin_Crash_Report_Data_-_Crash_Level_Records_20241126.parquet"
+			},
+			"compressionCodec": "snappy"
+		},
+		"schema": []
+	}
+}
