@@ -1,0 +1,20 @@
+{
+	"name": "ds_read_parquet_nyc",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_stgrgfall2024",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "Motor_Vehicle_Collisions_-_Crashes_20241126.parquet",
+				"fileSystem": "silver"
+			},
+			"compressionCodec": "snappy"
+		},
+		"schema": []
+	}
+}
