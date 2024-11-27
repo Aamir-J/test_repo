@@ -13,7 +13,7 @@
 				"fileName": "Motor_Vehicle_Collisions_-_Crashes_20241126.tsv",
 				"fileSystem": "bronze"
 			},
-			"columnDelimiter": ",",
+			"columnDelimiter": "\t",
 			"escapeChar": "\\",
 			"firstRowAsHeader": true,
 			"quoteChar": "\""
