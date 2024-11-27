@@ -1,5 +1,5 @@
 {
-	"name": "ds_parquet_Src_Austin",
+	"name": "ds_Parquet_Src_Austin",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "ls_stgrgfall2024",
