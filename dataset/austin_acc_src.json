@@ -1,5 +1,5 @@
 {
-	"name": "austin_acc_stg",
+	"name": "austin_acc_src",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "ls_final_proj",
