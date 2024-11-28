@@ -28,7 +28,8 @@
 			],
 			"scriptLines": [
 				"parameters{",
-				"     DI_JOB_ID as string ('1')",
+				"     DI_JOB_ID as string ('1'),",
+				"     FILENAME as string ('Austin')",
 				"}",
 				"source(output(",
 				"          ID as string,",
@@ -80,7 +81,7 @@
 				"     format: 'table') ~> sourceSrc",
 				"sourceSrc derive(DI_CREATED_DATE = toString(currentDate(), 'yyyy-MM-dd'),",
 				"          DI_JOB_ID = $DI_JOB_ID,",
-				"          DI_WORKFLOWFILENAME = 'Austin') ~> DerivedColumns",
+				"          DI_WORKFLOWFILENAME = $FILENAME) ~> DerivedColumns",
 				"DerivedColumns sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     input(",
