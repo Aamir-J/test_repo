@@ -1,0 +1,52 @@
+{
+	"name": "Dynamic_Staging_PL",
+	"properties": {
+		"activities": [
+			{
+				"name": "Lookup_Table_Names",
+				"type": "Lookup",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.00:10:00",
+					"retry": 2,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "SnowflakeV2Source",
+						"query": {
+							"value": "SELECT TABLE_NAME AS table_name FROM DEV_DB.INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE';",
+							"type": "Expression"
+						},
+						"exportSettings": {
+							"type": "SnowflakeExportCopyCommand"
+						}
+					},
+					"dataset": {
+						"referenceName": "Snowflake_Demo_DS",
+						"type": "DatasetReference",
+						"parameters": {
+							"schema_name": "PUBLIC",
+							"table_name": "BREED_DIM"
+						}
+					},
+					"firstRowOnly": false
+				}
+			}
+		],
+		"parameters": {
+			"sname": {
+				"type": "string",
+				"defaultValue": "PUBLIC"
+			},
+			"tname": {
+				"type": "string",
+				"defaultValue": "BREED_DIM"
+			}
+		},
+		"annotations": []
+	}
+}
