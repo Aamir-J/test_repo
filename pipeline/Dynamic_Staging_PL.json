@@ -55,21 +55,71 @@
 					"batchCount": 5,
 					"activities": [
 						{
-							"name": "Set TableName",
-							"type": "SetVariable",
+							"name": "SourceToParquet",
+							"type": "Copy",
 							"dependsOn": [],
 							"policy": {
+								"timeout": "0.00:30:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
 								"secureOutput": false,
 								"secureInput": false
 							},
 							"userProperties": [],
 							"typeProperties": {
-								"variableName": "tablename",
-								"value": {
-									"value": "@item().table_name",
-									"type": "Expression"
+								"source": {
+									"type": "AzureSqlSource",
+									"queryTimeout": "02:00:00",
+									"partitionOption": "None"
+								},
+								"sink": {
+									"type": "ParquetSink",
+									"storeSettings": {
+										"type": "AzureBlobFSWriteSettings"
+									},
+									"formatSettings": {
+										"type": "ParquetWriteSettings"
+									}
+								},
+								"enableStaging": false,
+								"translator": {
+									"type": "TabularTranslator",
+									"typeConversion": true,
+									"typeConversionSettings": {
+										"allowDataTruncation": true,
+										"treatBooleanAsNumber": false
+									}
 								}
-							}
+							},
+							"inputs": [
+								{
+									"referenceName": "Azure_Demo_DS",
+									"type": "DatasetReference",
+									"parameters": {
+										"schema_name": {
+											"value": "@item().schema_name",
+											"type": "Expression"
+										},
+										"table_name": {
+											"value": "@item().table_name",
+											"type": "Expression"
+										}
+									}
+								}
+							],
+							"outputs": [
+								{
+									"referenceName": "ds_migrate_Parquet",
+									"type": "DatasetReference",
+									"parameters": {
+										"Directory": "na",
+										"FileName": {
+											"value": "@concat(\n    item().table_name,'.parquet'\n)",
+											"type": "Expression"
+										}
+									}
+								}
+							]
 						}
 					]
 				}
