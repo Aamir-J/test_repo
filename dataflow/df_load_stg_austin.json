@@ -15,10 +15,10 @@
 			"sinks": [
 				{
 					"dataset": {
-						"referenceName": "ds_stg_austin",
+						"referenceName": "ds_lnd_austin",
 						"type": "DatasetReference"
 					},
-					"name": "LoadToStg"
+					"name": "LoadToLnd"
 				}
 			],
 			"transformations": [
@@ -187,7 +187,7 @@
 				"          DI_CREATED_DATE,",
 				"          DI_JOB_ID,",
 				"          DI_WORKFLOWFILENAME",
-				"     )) ~> LoadToStg"
+				"     )) ~> LoadToLnd"
 			]
 		}
 	}
