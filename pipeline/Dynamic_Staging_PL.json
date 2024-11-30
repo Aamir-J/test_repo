@@ -174,7 +174,7 @@
 									"parameters": {
 										"Directory": "na",
 										"FileName": {
-											"value": "@item().FileName",
+											"value": "@item().table_name",
 											"type": "Expression"
 										}
 									}
