@@ -174,7 +174,7 @@
 									"parameters": {
 										"Directory": "na",
 										"FileName": {
-											"value": "@item().table_name",
+											"value": "@concat(\n    item().table_name,'.parquet'\n)",
 											"type": "Expression"
 										}
 									}
