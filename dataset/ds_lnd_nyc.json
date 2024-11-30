@@ -1,5 +1,5 @@
 {
-	"name": "ds_stg_nyc",
+	"name": "ds_lnd_nyc",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "ls_final_proj",
@@ -157,7 +157,7 @@
 		],
 		"typeProperties": {
 			"schema": "PUBLIC",
-			"table": "STG_NYC"
+			"table": "LND_NYC"
 		}
 	}
 }
