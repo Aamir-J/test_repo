@@ -158,7 +158,14 @@
 										"type": "SnowflakeImportCopyCommand"
 									}
 								},
-								"enableStaging": false
+								"enableStaging": true,
+								"stagingSettings": {
+									"linkedServiceName": {
+										"referenceName": "ls_stgblobdamg7370",
+										"type": "LinkedServiceReference"
+									},
+									"path": "snowstaging"
+								}
 							},
 							"inputs": [
 								{
@@ -175,8 +182,15 @@
 							],
 							"outputs": [
 								{
-									"referenceName": "ds_snowflake_stage_spl",
-									"type": "DatasetReference"
+									"referenceName": "Snowflake_Demo_DS",
+									"type": "DatasetReference",
+									"parameters": {
+										"schema_name": "PUBLIC",
+										"table_name": {
+											"value": "@item().table_name",
+											"type": "Expression"
+										}
+									}
 								}
 							]
 						}
