@@ -1,5 +1,5 @@
 {
-	"name": "ds_stg_austin",
+	"name": "ds_lnd_austin",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "ls_final_proj",
@@ -243,7 +243,7 @@
 		],
 		"typeProperties": {
 			"schema": "PUBLIC",
-			"table": "STG_AUSTIN"
+			"table": "LND_AUSTIN"
 		}
 	}
 }
