@@ -1,5 +1,5 @@
 {
-	"name": "stg_chicago",
+	"name": "ds_lnd_chicago",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "ls_final_proj",
