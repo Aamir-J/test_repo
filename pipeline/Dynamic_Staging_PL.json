@@ -144,7 +144,7 @@
 								"source": {
 									"type": "ParquetSource",
 									"storeSettings": {
-										"type": "AzureBlobStorageReadSettings",
+										"type": "AzureBlobFSReadSettings",
 										"recursive": true,
 										"enablePartitionDiscovery": false
 									},
@@ -167,7 +167,7 @@
 									"parameters": {
 										"Directory": "na",
 										"FileName": {
-											"value": "@concat(\n    item(),'.parquet'\n)",
+											"value": "@item().FileName",
 											"type": "Expression"
 										}
 									}
