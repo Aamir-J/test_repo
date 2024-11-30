@@ -16,28 +16,27 @@
 				"userProperties": [],
 				"typeProperties": {
 					"source": {
-						"type": "SnowflakeV2Source",
-						"query": {
-							"value": "SELECT TABLE_NAME AS table_name, TABLE_SCHEMA AS schema_name FROM DEV_DB.INFORMATION_SCHEMA.TABLES \nWHERE TABLE_TYPE = 'BASE TABLE' AND schema_name = '@{pipeline().parameters.sname}';",
+						"type": "AzureSqlSource",
+						"sqlReaderQuery": {
+							"value": "SELECT t.name AS table_name, s.name AS schema_name\nFROM sys.tables t\nJOIN sys.schemas s ON t.schema_id = s.schema_id\nWHERE type = 'U'\nAND s.name = @{pipeline().parameters.sname};",
 							"type": "Expression"
 						},
-						"exportSettings": {
-							"type": "SnowflakeExportCopyCommand"
-						}
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
 					},
 					"dataset": {
-						"referenceName": "Snowflake_Demo_DS",
+						"referenceName": "Azure_Demo_DS",
 						"type": "DatasetReference",
 						"parameters": {
-							"schema_name": "PUBLIC",
-							"table_name": "BREED_DIM"
+							"schema_name": "dbo",
+							"table_name": "DIM_ACTORS_MIGRATE"
 						}
 					},
 					"firstRowOnly": false
 				}
 			},
 			{
-				"name": "ForEachTable",
+				"name": "ForEach1",
 				"type": "ForEach",
 				"dependsOn": [
 					{
@@ -53,67 +52,24 @@
 						"value": "@activity('Lookup_Table_Names').output.value",
 						"type": "Expression"
 					},
-					"batchCount": 10,
+					"batchCount": 5,
 					"activities": [
 						{
-							"name": "SourceToParquet",
-							"type": "Copy",
+							"name": "Set TableName",
+							"type": "SetVariable",
 							"dependsOn": [],
 							"policy": {
-								"timeout": "0.00:30:00",
-								"retry": 2,
-								"retryIntervalInSeconds": 30,
 								"secureOutput": false,
 								"secureInput": false
 							},
 							"userProperties": [],
 							"typeProperties": {
-								"source": {
-									"type": "SnowflakeV2Source",
-									"exportSettings": {
-										"type": "SnowflakeExportCopyCommand"
-									}
-								},
-								"sink": {
-									"type": "ParquetSink",
-									"storeSettings": {
-										"type": "AzureBlobStorageWriteSettings"
-									},
-									"formatSettings": {
-										"type": "ParquetWriteSettings"
-									}
-								},
-								"enableStaging": false
-							},
-							"inputs": [
-								{
-									"referenceName": "Snowflake_Demo_DS",
-									"type": "DatasetReference",
-									"parameters": {
-										"schema_name": {
-											"value": "@item().schema_name",
-											"type": "Expression"
-										},
-										"table_name": {
-											"value": "@item().table_name",
-											"type": "Expression"
-										}
-									}
+								"variableName": "tablename",
+								"value": {
+									"value": "@item().table_name",
+									"type": "Expression"
 								}
-							],
-							"outputs": [
-								{
-									"referenceName": "ds_Parquet_Staging",
-									"type": "DatasetReference",
-									"parameters": {
-										"Directory": "na",
-										"FileName": {
-											"value": "@concat(\n    item().table_name,'.parquet'\n)",
-											"type": "Expression"
-										}
-									}
-								}
-							]
+							}
 						}
 					]
 				}
@@ -122,7 +78,7 @@
 		"parameters": {
 			"sname": {
 				"type": "string",
-				"defaultValue": "PUBLIC"
+				"defaultValue": "dbo"
 			}
 		},
 		"variables": {
