@@ -3,7 +3,7 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "Load Stg Chicago",
+				"name": "Load Landing Chicago",
 				"type": "ExecuteDataFlow",
 				"dependsOn": [],
 				"policy": {
