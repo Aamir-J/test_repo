@@ -18,7 +18,7 @@
 					"source": {
 						"type": "AzureSqlSource",
 						"sqlReaderQuery": {
-							"value": "SELECT t.name AS table_name, s.name AS schema_name\nFROM sys.tables t\nJOIN sys.schemas s ON t.schema_id = s.schema_id\nWHERE type = 'U'\nAND s.name = @{pipeline().parameters.sname};",
+							"value": "SELECT t.name AS table_name, s.name AS schema_name\nFROM sys.tables t\nJOIN sys.schemas s ON t.schema_id = s.schema_id\nWHERE type = 'U';",
 							"type": "Expression"
 						},
 						"queryTimeout": "02:00:00",
