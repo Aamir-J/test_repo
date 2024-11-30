@@ -15,7 +15,7 @@
 			"sinks": [
 				{
 					"dataset": {
-						"referenceName": "stg_chicago",
+						"referenceName": "ds_lnd_chicago",
 						"type": "DatasetReference"
 					},
 					"name": "LoadToStg"
