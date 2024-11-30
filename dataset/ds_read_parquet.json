@@ -2,7 +2,7 @@
 	"name": "ds_read_parquet",
 	"properties": {
 		"linkedServiceName": {
-			"referenceName": "ls_stgrgfall2024",
+			"referenceName": "ls_stgblobdamg7370",
 			"type": "LinkedServiceReference"
 		},
 		"parameters": {
@@ -17,9 +17,16 @@
 		"type": "Parquet",
 		"typeProperties": {
 			"location": {
-				"type": "AzureBlobFSLocation",
-				"fileName": "Seattle_Pet_Licenses.parquet",
-				"fileSystem": "silver"
+				"type": "AzureBlobStorageLocation",
+				"fileName": {
+					"value": "@dataset().FileName",
+					"type": "Expression"
+				},
+				"folderPath": {
+					"value": "@if(equals(dataset().Directory,'na'),'',dataset().Directory)",
+					"type": "Expression"
+				},
+				"container": "snowstaging"
 			},
 			"compressionCodec": "snappy"
 		},
