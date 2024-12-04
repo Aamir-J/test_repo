@@ -15,7 +15,7 @@
 			"sinks": [
 				{
 					"dataset": {
-						"referenceName": "ds_lnd_montgomery",
+						"referenceName": "ds_montgomery_lnd",
 						"type": "DatasetReference"
 					},
 					"name": "LoadToLnd"
@@ -76,7 +76,7 @@
 				"sourceSrc derive(DI_CREATED_DATE = toString(currentDate(), 'yyyy-MM-dd'),",
 				"          DI_JOB_ID = $DI_JOB_ID,",
 				"          DI_WORKFLOWFILENAME = $FILENAME) ~> DerivedColumns",
-				"DerivedColumns sink(allowSchemaDrift: false,",
+				"DerivedColumns sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     input(",
 				"          REPORT_NUMBER as string,",
